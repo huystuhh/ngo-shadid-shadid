@@ -10,6 +10,16 @@
     <!-- Bootstrap -->
     <link href="Frontend/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="Frontend/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Frontend/JS/three.js"></script>
+    <script src="Frontend/JS/dropzone.js"></script>
+    <script>
+    	//Javascript code goes here. -SS
+    </script>
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,16 +39,15 @@
     	<div class="row outer-container">
     		<div class="col-md-1"></div>
     		<div class="col-md-1"></div>
-    		<div class="col-md-8 inner-container">
-    			<div class="text-box">
-	    			<div class="body-text">Drag a 3D model file (.obj or .stl) here to rift-ify it</div>
-	    			<div class="or">or</div>
-	    			<div class="fileUpload btn btn-success btn-lg">
-					    <span>Click Here to Browse</span>
-					    <input type="file" class="upload" />
-					</div>
+   			<form action="/files" class="col-md-8 inner-container dropzone" id="file-upload">
+  				<div class="text-box">
+	    			<div class="dz-message vcenter">
+	    				<div class="body-text">Drag a 3D model file (.obj or .stl) here to Riftify it</div>
+	    				<div class="or">or</div>
+	    				<div class="body-text">Click to manually browse</div>
+	    			</div>
 	    		</div>
-    		</div>
+   			</form>
     		<div class="col-md-2">
     			<div class="oculus">
     				<div class="oculus-logo"></div>
@@ -46,14 +55,5 @@
     		</div>
     	</div>
     </div>
-    
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="Frontend/bootstrap/js/bootstrap.min.js"></script>
-    <script src="Frontend/JS/three.js"></script>
-    <script>
-    	//Javascript code goes here. -SS
-    </script>
   </body>
 </html>

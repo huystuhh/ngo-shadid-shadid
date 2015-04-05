@@ -35,18 +35,28 @@
 }
 
 .text-box {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	height: 100%;
+	width: 100%;
+	display: table;
+	table-layout:fixed;
 }
 
 .body-text {
-	font-size: 3em;
+	font-size: 2em;
+	font-weight: bold;
+	color: #2E9AFE;
 }
 
 .or {
-	font-size: 2em;
-	color: 
+	font-size: 1.75em;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.vcenter {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
 }
 
 .fileUpload {
