@@ -1,17 +1,20 @@
 <?php
-$ds          = DIRECTORY_SEPARATOR;  //1
- 
-$storeFolder = 'Database';   //2
- 
-if (!empty($_FILES)) {
-     
-    $tempFile = $_FILES['file']['tmp_name'];          //3             
-      
-    $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;  //4
-     
-    $targetFile =  $targetPath. $_FILES['file']['name'];  //5
- 
-    move_uploaded_file($tempFile,$targetFile); //6
-     
+// In PHP versions earlier than 4.1.0, $HTTP_POST_FILES should be used instead
+// of $_FILES.
+
+$uploaddir = '/Database/';
+$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+
+echo '<pre>';
+if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+    echo "File is valid, and was successfully uploaded.\n";
+} else {
+    echo "Possible file upload attack!\n";
 }
+
+echo 'Here is some more debugging info:';
+print_r($_FILES);
+
+print "</pre>";
+
 ?>
