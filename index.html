@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Riftify Me!</title>
 
+	<link rel="stylesheet" type="text/css" href="Frontend/dropzone.css">
 	<link rel="stylesheet" type="text/css" href="Frontend/app.css">
     <!-- Bootstrap -->
     <link href="Frontend/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +40,7 @@
     	<div class="row outer-container">
     		<div class="col-md-1"></div>
     		<div class="col-md-1"></div>
-   			<form action="upload.php" enctype="multipart/form-data" method="POST" class="col-md-8 inner-container dropzone" id="file-upload">
+   			<form action="upload.php" enctype="multipart/form-data" method="POST" class="col-md-8 inner-container dropzone dz-clickable" id="file-upload">
   				<div class="text-box">
 	    			<div class="dz-message vcenter">
 	    				<div class="body-text">Drag a 3D model file (.obj or .stl) here to Riftify it</div>
