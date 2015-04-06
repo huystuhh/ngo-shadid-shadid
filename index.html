@@ -38,7 +38,13 @@
     </div>
     <div class="container-fluid main-container">
     	<div class="row outer-container">
-    		<div class="col-md-1"></div>
+    		<div class="col-md-1">
+    			<form action="upload.php" method="post" enctype="multipart/form-data">
+			    Select image to upload:
+			    <input type="file" name="fileToUpload" id="fileToUpload">
+			    <input type="submit" value="Upload Image" name="submit">
+			</form>
+    		</div>
     		<div class="col-md-1"></div>
    			<form action="upload.php" enctype="multipart/form-data" method="POST" class="col-md-8 inner-container dropzone dz-clickable" id="file-upload">
   				<div class="text-box">
