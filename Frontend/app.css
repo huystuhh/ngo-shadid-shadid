@@ -29,16 +29,8 @@
 	border-style:dashed;
 	border-width: medium;
 	border-color: #d3d3d3;
-	-webkit-transform-style: preserve-3d;
-  	-moz-transform-style: preserve-3d;
- 	 transform-style: preserve-3d;
-}
-
-.text-box {
-	height: 100%;
-	width: 100%;
-	display: table;
-	table-layout:fixed;
+ 	 padding-right: 0px !important;
+ 	 padding-left: 0px !important;
 }
 
 .body-text {
@@ -53,28 +45,18 @@
 	padding: 5px;
 }
 
-.vcenter {
-    display:table-cell;
-    vertical-align:middle;
-    text-align:center;
+.dropzone {
+	height: 100%;
+	width: 100%;
+	border-style: none;
 }
 
-.fileUpload {
-	position: relative;
-	overflow: hidden;
-	margin: 10px;
-}
-
-.fileUpload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity=0);
+.dz-message {
+	 position: relative;
+	 top: 35%;
+	 -webkit-transform: translateY(-35%);
+	 -ms-transform: translateY(-35%);
+	 transform: translateY(-35%);
 }
 
 .oculus {

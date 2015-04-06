@@ -45,23 +45,18 @@
     </div>
     <div class="container-fluid main-container">
     	<div class="row outer-container">
-    		<div class="col-md-1">
-    			<form action="upload.php" method="POST" enctype="multipart/form-data">
-			    Select image to upload:
-			    <input type="file" name="userfile">
-			    <input type="submit" value="Send File">
-			</form>
-    		</div>
+    		<div class="col-md-1"></div>
     		<div class="col-md-1"></div>
     		<div class="col-md-8 inner-container">
 	   			<form action="upload.php" enctype="multipart/form-data" method="POST" class="dropzone" id="my-awesome-dropzone">
-	  				<div class="text-box">
-		    			<div class="dz-message vcenter">
-		    				<div class="body-text">Drag a 3D model file (.obj or .stl) here to Riftify it</div>
-		    				<div class="or">or</div>
-		    				<div class="body-text">Click to manually browse</div>
-		    			</div>
-		    		</div>
+	  				<div class="fallback">
+	  					<input name="userfile" type="file">
+	  				</div>
+	  				<div class="dz-message">
+	    				<div class="body-text">Drag a 3D model file (.obj or .stl) here to Riftify it</div>
+	    				<div class="or">or</div>
+	    				<div class="body-text">Click to manually browse</div>
+	    			</div>
 	   			</form>
    			</div>
     		<div class="col-md-2">
