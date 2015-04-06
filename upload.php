@@ -2,7 +2,7 @@
 // In PHP versions earlier than 4.1.0, $HTTP_POST_FILES should be used instead
 // of $_FILES.
 
-$uploaddir = '/var/www/ngo-shadid-shadid/Database/';
+$uploaddir = "/var/www/ngo-shadid-shadid/Database/";
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
 echo '<pre>';
