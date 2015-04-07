@@ -121,10 +121,7 @@ function init()
 	//	usingRift = !usingRift;
 	//	onResize();
 	//});
-	
-	usingRift = !usingRift;
-	onResize();
-	
+		
 	//initialze the scene
 	windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
 	aspectRatio = window.innerWidth / window.innerHeight;
@@ -162,6 +159,8 @@ function init()
 	element.appendChild(renderer.domElement);
 	
 	riftCamera = new THREE.OculusRiftEffect(renderer);
+	usingRift = !usingRift;
+	onResize();
 }//end of init
 
 function keyDown(event)
