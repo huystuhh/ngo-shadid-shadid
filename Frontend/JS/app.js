@@ -6,7 +6,7 @@ $(document).ready(function(){
 			maxFileSize: 2048, //MB = 2 GB
 			init: function() {
 				this.on("success", function(file) {
-					document.getElementById("riftify").visibility = 'visible';
+					document.getElementById('riftify').style.visibility = "visible";
 				});
 			}
 }});
