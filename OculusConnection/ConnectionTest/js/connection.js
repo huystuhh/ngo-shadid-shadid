@@ -59,7 +59,7 @@ function initGeometry(){
 			{
 				object.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
-						child.material.map = material;
+						child.material = material;
 					}
 				} );
 				object.add(obj);
