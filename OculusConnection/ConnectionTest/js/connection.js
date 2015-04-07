@@ -21,7 +21,7 @@ function initScene() {
 	aspectRatio = window.innerWidth / window.innerHeight;
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 10000);
-	camera.position.set(120, 160, 120);
+	camera.position.z = 100;
 	camera.lookAt(scene.position);
 	// Initialize the renderer
 	renderer = new THREE.WebGLRenderer({antialias:true});
@@ -33,7 +33,7 @@ function initScene() {
 
 function initLights(){
 	point = new THREE.DirectionalLight( 0xffeedd );
-	point.position.set( 0, 0, 1 );
+	point.directionalLight.position.set( 0, 0, 1 );
 	scene.add(point);
 	
 	var ambient = new THREE.AmbientLight( 0x101030 );
