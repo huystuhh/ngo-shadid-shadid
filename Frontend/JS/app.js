@@ -7,6 +7,6 @@ $(document).ready(function(){
 			init: function() {
 				this.on("success", function(file) {
 					document.getElementById("riftify").visibility = 'visible';
-				}
+				});
 			}
 }});
