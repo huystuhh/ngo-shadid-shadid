@@ -62,7 +62,7 @@ function initGeometry(){
 	
 	loader.load(localStorage.getItem("obj"), function(obj)
 			{
-				object.traverse( function ( child ) {
+				obj.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
 						child.material = material;
 					}
