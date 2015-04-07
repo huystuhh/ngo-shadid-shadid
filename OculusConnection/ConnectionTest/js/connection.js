@@ -55,7 +55,7 @@ function initGeometry(){
 	var onError = function ( xhr ) 
 	{
 	};
-	var texture = new THREE.texture();
+	var texture = new THREE.Texture();
 	var loader = new THREE.ImageLoader( manager );
 	loader.load( 'image/UV_grid_Sm.jpg', function ( image ) {
 
