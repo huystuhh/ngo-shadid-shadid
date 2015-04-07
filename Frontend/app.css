@@ -80,6 +80,6 @@
 .btn {
 	display: inline-block;
 	width: 50%;
-	visibility: visible;
+	visibility: hidden;
 	font-size: 36px !important;
 }
