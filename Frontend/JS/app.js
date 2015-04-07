@@ -149,8 +149,8 @@ function init()
 	var loader = new THREE.OBJLoader(manager);
 	loader.load(localStorage.getItem("obj"), function(obj)
 			{
-				object.add(obj);
-				scene.add(object);
+				obj.add(axes);
+				scene.add(obj);
 			}, onProgress, onError);
 	
 	
