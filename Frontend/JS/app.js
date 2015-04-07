@@ -4,11 +4,11 @@ var aspectRatio, windowHalf;
 var object;
 var riftCamera;
 var usingRift = false;
-var goLeft = false
-var goRight = false
-var goUp = false
-var goDown = false
-var rotationx = rotationy = rotationz = 0    
+var goLeft = false;
+var goRight = false;
+var goUp = false;
+var goDown = false;
+var rotationx = rotationy = rotationz = 0;   
 var _q1 = new THREE.Quaternion(); 
 var axisX = new THREE.Vector3( 1, 0, 0 ); 
 var axisZ = new THREE.Vector3( 0, 0, 1 ); 
