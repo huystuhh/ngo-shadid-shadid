@@ -21,14 +21,13 @@ $(document).ready(function(){
 			init: function() {
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
-					console.log(file);
-					console.log(file.name);
+					localStorage.setItem("obj", file);
 				});
 			}
 }});
 
 function riftify() {
-	
+	animate();
 }
 
 function onResize() 
@@ -146,7 +145,7 @@ function init()
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	var manager = new THREE.LoadingManager();
 	var loader = new THREE.OBJLoader(manager);
-	loader.load(obj, function(obj)
+	loader.load(localStorage.getItem("obj"), function(obj)
 			{
 				object.add(obj);
 				scene.add(object);
@@ -198,5 +197,4 @@ function keyUp()
 window.onLoad()
 {
 	init();
-	animate();
 }
