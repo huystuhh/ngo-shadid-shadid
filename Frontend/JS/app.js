@@ -28,7 +28,7 @@ $(document).ready(function(){
 }});
 
 function riftify() {
-	window.open("../../OculusConnection/connection.html");
+	window.open("../../OculusConnection/ConnectionTest/connection.html");
 }
 
 function onResize() 
