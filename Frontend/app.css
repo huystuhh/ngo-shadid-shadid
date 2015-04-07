@@ -70,3 +70,10 @@
 	bottom: 10px;
 	max-width: 100%;
 }
+
+.btn {
+	position: relative;
+	bottom: 200px;
+	width: 50%;
+	visibility: hidden;
+}
