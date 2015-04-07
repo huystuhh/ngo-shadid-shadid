@@ -3,6 +3,7 @@ var point;
 var aspectRatio, windowHalf;
 var object;
 var riftCamera;
+var usingRift = false;
 var goLeft = false
 var goRight = false
 var goUp = false
