@@ -24,13 +24,12 @@
 }
 
 .inner-container {
+	width: 100%;
 	text-align:center;
 	height: 500px;
 	border-style:dashed;
 	border-width: medium;
 	border-color: #d3d3d3;
- 	 padding-right: 0px !important;
- 	 padding-left: 0px !important;
 }
 
 .body-text {
@@ -71,9 +70,16 @@
 	max-width: 100%;
 }
 
-.btn {
-	position: relative;
+.btn-container {
+	position: absolute;
 	bottom: 200px;
+	width: 100%;
+	text-align: center;
+}
+
+.btn {
+	display: inline-block;
 	width: 50%;
-	visibility: hidden;
+	visibility: visible;
+	font-size: 36px !important;
 }
