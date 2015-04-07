@@ -23,6 +23,7 @@ $(document).ready(function(){
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
 					localStorage.setItem("obj", file);
+					console.log(file);
 				});
 			}
 }});
