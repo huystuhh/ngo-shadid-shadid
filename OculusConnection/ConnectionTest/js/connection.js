@@ -55,20 +55,18 @@ function initGeometry(){
 	var onError = function ( xhr ) 
 	{
 	};
+	
 	var manager = new THREE.LoadingManager();
 	var texture = new THREE.Texture(manager);
 	var loader = new THREE.ImageLoader( manager );
 	loader.load( 'lib/UV_Grid_Sm.jpg', function ( image ) {
-
 		texture.image = image;
 		texture.needsUpdate = true;
-
 	});
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
 	var loader = new THREE.OBJLoader(manager);
-	
-	loader.load('lib/airboat.obj', function(obj)
+	loader.load(localStorage.getItem("obj"), function(obj)
 			{
 				obj.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
