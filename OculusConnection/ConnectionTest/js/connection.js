@@ -33,7 +33,7 @@ function initScene() {
 
 function initLights(){
 	point = new THREE.DirectionalLight( 0xffeedd );
-	point.directionalLight.position.set( 0, 0, 1 );
+	point.position.set( 0, 0, 1 );
 	scene.add(point);
 	
 	var ambient = new THREE.AmbientLight( 0x101030 );
