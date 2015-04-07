@@ -32,9 +32,12 @@ function initScene() {
 }
 
 function initLights(){
-	point = new THREE.DirectionalLight( 0xffffff, 1, 0, Math.PI, 1 );
-	point.position.set( -250, 250, 150 );
+	point = new THREE.DirectionalLight( 0xffeedd );
+	point.directionalLight.position.set( 0, 0, 1 );
 	scene.add(point);
+	
+	var ambient = new THREE.AmbientLight( 0x101030 );
+	scene.add( ambient );
 }
 function initGeometry(){
 	//methods for OBJLoader
