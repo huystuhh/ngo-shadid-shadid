@@ -37,10 +37,30 @@ function initLights(){
 	scene.add(point);
 }
 function initGeometry(){
+	//methods for OBJLoader
+	var onProgress = function ( xhr ) 
+	{
+		if ( xhr.lengthComputable ) 
+		{
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+
+	var onError = function ( xhr ) 
+	{
+	};
 	
+	var manager = new THREE.LoadingManager();
+	var loader = new OBJLoader(manager);
+	var axes = new THREE.AxisHelper();
 	cube = localStorage.getItem("obj");
-	object.add(cube)
-	scene.add(object);
+	loader.load(cube, function(obj)
+			{
+				object.add(obj);
+				scene.add(object);
+			}, onProgress, onError);
+	
 }
 
 function onResize() {
