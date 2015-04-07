@@ -129,9 +129,11 @@ function init()
 	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 10000);
 	camera.position.set(120, 160, 120);
 	camera.lookAt(scene.position);
+	
 	// Initialize the renderer
 	renderer = new THREE.WebGLRenderer({antialias:true});
 	renderer.setClearColor(0x161616);
+	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	element = document.getElementById('viewport');
 	element.appendChild(renderer.domElement);
@@ -151,12 +153,6 @@ function init()
 				scene.add(object);
 			}, onProgress, onError);
 	
-	//create renderer
-	renderer = new THREE.WebGLRenderer();
-	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	element = document.getElementById('viewport');
-	element.appendChild(renderer.domElement);
 	
 	riftCamera = new THREE.OculusRiftEffect(renderer);
 	usingRift = !usingRift;
