@@ -50,13 +50,24 @@ function initGeometry(){
 	var onError = function ( xhr ) 
 	{
 	};
-	
+	var loader = new THREE.ImageLoader( manager );
+	loader.load( 'UV_grid_Sm.jpg', function ( image ) {
+
+		texture.image = image;
+		texture.needsUpdate = true;
+
+	} );
 	var manager = new THREE.LoadingManager();
 	var loader = new THREE.OBJLoader(manager);
 	var axes = new THREE.AxisHelper();
 	cube = localStorage.getItem("obj");
 	loader.load(cube, function(obj)
 			{
+				object.traverse( function ( child ) {
+					if ( child instanceof THREE.Mesh ) {
+						child.material.map = texture;
+					}
+				} );
 				object.add(obj);
 				scene.add(object);
 			}, onProgress, onError);
