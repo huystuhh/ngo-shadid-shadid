@@ -117,10 +117,13 @@ function init()
 	window.addEventListener('resize', onResize, false);
 	
 	//button for rift camera
-	document.getElementById("toggle-render").addEventListener("click", function(){
-		usingRift = !usingRift;
-		onResize();
-	});
+	//document.getElementById("toggle-render").addEventListener("click", function(){
+	//	usingRift = !usingRift;
+	//	onResize();
+	//});
+	
+	usingRift = !usingRift;
+	onResize();
 	
 	//initialze the scene
 	windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
