@@ -27,6 +27,7 @@ $(document).ready(function(){
 }});
 
 function riftify() {
+	init();
 	animate();
 }
 
@@ -48,9 +49,7 @@ function onResize()
 
 function animate()
 {
-	requestAnimation
-	
-	Frame(animate);
+	requestAnimationFrame(animate);
 	render();
 }//end of animate
 
@@ -192,9 +191,3 @@ function keyUp()
 	goUp = false;
 	goDown = false;
 }//end of keyUp
-
-
-window.onLoad()
-{
-	init();
-}
