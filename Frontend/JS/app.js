@@ -21,6 +21,8 @@ $(document).ready(function(){
 			init: function() {
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
+					console.log(file);
+					console.log(file.name);
 				});
 			}
 }});
