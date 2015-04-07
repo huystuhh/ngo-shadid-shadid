@@ -51,7 +51,7 @@ function initGeometry(){
 	{
 	};
 	var loader = new THREE.ImageLoader( manager );
-	loader.load( 'UV_grid_Sm.jpg', function ( image ) {
+	loader.load( '../lib/UV_grid_Sm.jpg', function ( image ) {
 
 		texture.image = image;
 		texture.needsUpdate = true;
