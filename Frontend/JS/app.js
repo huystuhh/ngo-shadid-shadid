@@ -146,7 +146,7 @@ function init()
 	//create object
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	var manager = new THREE.LoadingManager();
-	var loader = new OBJLoader(manager);
+	var loader = new THREE.OBJLoader(manager);
 	loader.load(localStorage.getItem("obj"), function(obj)
 			{
 				object.add(obj);
