@@ -28,8 +28,7 @@ $(document).ready(function(){
 }});
 
 function riftify() {
-	init();
-	animate();
+	window.open("../../OculusConnection/connection.html");
 }
 
 function onResize() 
