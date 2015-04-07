@@ -78,8 +78,7 @@
 }
 
 .btn {
-	display: inline-block;
+	display: none !important;
 	width: 50%;
-	visibility: hidden;
 	font-size: 36px !important;
 }
