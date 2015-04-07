@@ -149,8 +149,9 @@ function init()
 	loader.load(localStorage.getItem("obj"), function(obj)
 			{
 				obj.add(axes);
-				obj.add(material);
+				obj.position.y = -10;
 				scene.add(obj);
+				
 			}, onProgress, onError);
 	
 	
