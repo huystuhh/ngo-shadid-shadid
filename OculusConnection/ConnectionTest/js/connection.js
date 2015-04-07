@@ -52,7 +52,7 @@ function initGeometry(){
 	};
 	
 	var manager = new THREE.LoadingManager();
-	var loader = new OBJLoader(manager);
+	var loader = new THREE.OBJLoader(manager);
 	var axes = new THREE.AxisHelper();
 	cube = localStorage.getItem("obj");
 	loader.load(cube, function(obj)
