@@ -59,8 +59,8 @@ function initGeometry(){
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	var manager = new THREE.LoadingManager();
 	var loader = new THREE.OBJLoader(manager);
-	cube = localStorage.getItem("obj");
-	loader.load(cube, function(obj)
+	
+	loader.load(localStorage.getItem("obj"), function(obj)
 			{
 				object.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
