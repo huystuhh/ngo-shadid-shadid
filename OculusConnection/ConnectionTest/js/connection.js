@@ -55,7 +55,14 @@ function initGeometry(){
 	var onError = function ( xhr ) 
 	{
 	};
-	
+	var texture = new THREE.texture();
+	var loader = new THREE.ImageLoader( manager );
+	loader.load( 'image/UV_grid_Sm.jpg', function ( image ) {
+
+		texture.image = image;
+		texture.needsUpdate = true;
+
+	} );
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	var manager = new THREE.LoadingManager();
 	var loader = new THREE.OBJLoader(manager);
