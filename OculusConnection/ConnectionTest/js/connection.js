@@ -38,8 +38,8 @@ function initLights(){
 	scene.add(point);
 }
 function initGeometry(){
-	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
-	cube = new THREE.Mesh( new THREE.CubeGeometry(90, 60, 50), material);
+	
+	cube = localStorage.getItem("obj");
 	object.add(cube)
 	scene.add(object);
 }
