@@ -65,6 +65,26 @@ function initGeometry(){
 	});
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
+	$.ajax({
+		  url: 'lib/airboat.obj',
+		  data: data,
+		  success: success,
+		  dataType: dataType
+	});
+	
+	var jqxhr = $.get( "lib/airboat.obj", function() {
+		  alert( "success" );
+		})
+		  .done(function() {
+		    alert( "second success" );
+		  })
+		  .fail(function() {
+		    alert( "error" );
+		  })
+		  .always(function() {
+		    alert( "finished" );
+	});
+	
 	var loader = new THREE.OBJLoader(manager);
 	loader.load('lib/airboat.obj', function(obj)
 			{
