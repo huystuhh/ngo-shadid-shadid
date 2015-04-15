@@ -65,20 +65,12 @@ function initGeometry(){
 	});
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
-	console.log("Here");
 	var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
-		  alert( "success" );
+		  console.log( "success" );
 		})
-		  .done(function() {
-		    alert( "second success" );
-		  })
 		  .fail(function() {
-		    alert( "error" );
-		  })
-		  .always(function() {
-		    alert( "finished" );
-	});
-	console.log("Here2");
+		    console.log( "error" );
+		  });
 	
 	var loader = new THREE.OBJLoader(manager);
 	loader.load('lib/capsule.obj', function(obj)
