@@ -92,6 +92,7 @@ function initGeometry(){
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
 	var loader = new THREE.OBJLoader(manager);
+	console.log(uploadedFile);
 	loader.load(uploadedFile, function(obj)
 			{
 				obj.traverse( function ( child ) {
