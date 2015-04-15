@@ -65,14 +65,14 @@ function initGeometry(){
 	});
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
-	$.ajax({
+	jQuery.ajax({
 		  url: 'lib/airboat.obj',
 		  data: data,
 		  success: success,
 		  dataType: dataType
 	});
 	
-	var jqxhr = $.get( "lib/airboat.obj", function() {
+	var jqxhr = jQuery.get( "lib/airboat.obj", function() {
 		  alert( "success" );
 		})
 		  .done(function() {
