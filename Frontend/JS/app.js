@@ -33,11 +33,11 @@ $(document).ready(function(){
 $(function(){
 	$("#riftify, #modal-background, #modal-close").click(function () {
 		$("#modal-content,#modal-background").toggleClass("active");
-		riftify();
 	});
 });
 
 function riftify(var file) {
+	$("#modal-content,#modal-background").toggleClass("active");
 	init(file);
 	animate();
 	//window.open("../../OculusConnection/ConnectionTest/connection.html");
