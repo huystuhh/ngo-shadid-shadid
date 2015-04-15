@@ -36,7 +36,7 @@ $(function(){
 	});
 });
 
-function riftify(var file) {
+function riftify(file) {
 	$("#modal-content,#modal-background").toggleClass("active");
 	init(file);
 	animate();
@@ -70,7 +70,7 @@ function initLights(){
 
 
 }
-function initGeometry(var file){
+function initGeometry(file){
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
 	{
@@ -177,7 +177,7 @@ function render() {
 	}
 	return true;
 }
-function init(var file)
+function init(file)
 {
 	//initialize the object.
 	object = new THREE.Object3D();
