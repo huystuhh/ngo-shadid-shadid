@@ -193,10 +193,7 @@ function init()
 	initGeometry();
 	initLights();
 	//button for rift camera
-	document.getElementById("toggle-render").addEventListener("click", function(){
-		usingRift = !usingRift;
-		onResize();
-	});
+
 	
 	
 	// Create the bridge object and attempt to connect.
