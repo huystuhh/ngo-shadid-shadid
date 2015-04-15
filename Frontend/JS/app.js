@@ -12,7 +12,8 @@ var goUp = false
 var goDown = false
 var rotationx = rotationy = rotationz = 0    
 var axisX = new THREE.Vector3( 1, 0, 0 ); 
-var axisZ = new THREE.Vector3( 0, 0, 1 ); 
+var axisZ = new THREE.Vector3( 0, 0, 1 );
+var uploadedFile;
 
 $(document).ready(function(){
 	Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
@@ -24,6 +25,7 @@ $(document).ready(function(){
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
 					localStorage.setItem("obj", file);
+					uploadedFile = file;
 					console.log(file);
 				});
 			}
