@@ -24,6 +24,7 @@ $(document).ready(function(){
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
 					localStorage.setItem("obj", file);
+					riftify(file);
 					console.log(file);
 				});
 			}
@@ -36,8 +37,8 @@ $(function(){
 	});
 });
 
-function riftify() {
-	init();
+function riftify(var file) {
+	init(file);
 	animate();
 	//window.open("../../OculusConnection/ConnectionTest/connection.html");
 }
@@ -69,7 +70,7 @@ function initLights(){
 
 
 }
-function initGeometry(){
+function initGeometry(var file){
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
 	{
@@ -90,7 +91,7 @@ function initGeometry(){
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load(localStorage.getItem("obj"), function(obj)
+	loader.load(file, function(obj)
 			{
 				obj.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
@@ -176,7 +177,7 @@ function render() {
 	}
 	return true;
 }
-function init()
+function init(var file)
 {
 	//initialize the object.
 	object = new THREE.Object3D();
@@ -187,7 +188,7 @@ function init()
 	document.addEventListener("keyup", keyUp, false);
 	window.addEventListener('resize', onResize, false);
 	initScene();
-	initGeometry();
+	initGeometry(file);
 	initLights();
 	//button for rift camera
 	document.getElementById("toggle-render").addEventListener("click", function(){
