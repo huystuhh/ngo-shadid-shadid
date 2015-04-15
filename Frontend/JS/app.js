@@ -187,7 +187,7 @@ function init()
 	document.addEventListener("keyup", keyUp, false);
 	window.addEventListener('resize', onResize, false);
 	initScene();
-	initGeometry(file);
+	initGeometry();
 	initLights();
 	//button for rift camera
 	document.getElementById("toggle-render").addEventListener("click", function(){
