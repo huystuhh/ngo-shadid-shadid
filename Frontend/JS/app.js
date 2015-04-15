@@ -193,19 +193,6 @@ function init()
 	initGeometry();
 	initLights();
 	//button for rift camera
-
-	
-	
-	// Create the bridge object and attempt to connect.
-	oculusBridge = new OculusBridge({
-		onOrientationUpdate : bridgeOrientationUpdated,
-		onAccelerationUpdate : bridgeAccelerationUpdated,
-		onConfigUpdate : bridgeConfigUpdated,
-		onConnect : bridgeConnected,
-		onDisconnect : bridgeDisconnected
-	});
-	
-	oculusBridge.connect();
 	
 	riftCamera = new THREE.OculusRiftEffect(renderer);
 }
