@@ -65,6 +65,7 @@ function initGeometry(){
 	});
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
+	console.log("Here");
 	var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
 		  alert( "success" );
 		})
@@ -77,6 +78,7 @@ function initGeometry(){
 		  .always(function() {
 		    alert( "finished" );
 	});
+	console.log("Here2");
 	
 	var loader = new THREE.OBJLoader(manager);
 	loader.load(jqxhr, function(obj)
