@@ -137,7 +137,7 @@ function init()
 		var loader = new THREE.STLLoader(manager);
 		loader.load(fileLoc, function(stl)
 				{
-					var mesh = new THREE.mes(stl);
+					var mesh = new THREE.Mesh(stl);
 					scene.add(mesh);
 				}, onProgress, onError);
 	}//end of else if
