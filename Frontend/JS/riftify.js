@@ -112,7 +112,7 @@ function init()
 		{
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-			$bar.width(Math.round(percentComplete, 2) + "%");
+			$bar.width($bar.width() + Math.round(percentComplete, 2) * 10);
 			$bar.text(Math.round(percentComplete, 2) + "%");
 			
 			if(percentComplete == 100)
