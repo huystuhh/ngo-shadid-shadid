@@ -129,13 +129,6 @@ function init()
 	};
 	
 	var loader = new THREE.ImageLoader( manager );
-	var texture = new THREE.Texture();
-	loader.load( 'lib/UV_Grid_Sm.jpg', function ( image ) {
-
-		texture.image = image;
-		texture.needsUpdate = true;
-
-	} );
 	var manager = new THREE.LoadingManager();	
 	var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
 		  console.log( "success" );
@@ -147,11 +140,7 @@ function init()
 	var loader = new THREE.OBJLoader(manager);
 	loader.load('lib/IronMan.obj', function(obj)
 			{
-				obj.traverse( function ( child ) {
-					if ( child instanceof THREE.Mesh ) {
-						//child.material.map = texture;
-					}
-				} );
+				
 				object.add(obj);
 				scene.add(object);
 			}, onProgress, onError);
