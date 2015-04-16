@@ -104,7 +104,7 @@ function init()
 	aspectRatio = window.innerWidth / window.innerHeight;
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 2000);
-	camera.position.z = 25;
+	camera.position.z = 250;
 	camera.lookAt(scene.position);
 	// Initialize the renderer
 	renderer = new THREE.WebGLRenderer({alpha: true},{antialias:true});
