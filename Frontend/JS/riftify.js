@@ -121,15 +121,26 @@ function init()
 	
 	var fileName = sessionStorage.getItem("name");
 	fileLoc += fileName;
-	
-	var loader = new THREE.OBJLoader(manager);
-	loader.load(fileLoc, function(obj)
-			{
-				
-				object.add(obj);
-				scene.add(object);
-			}, onProgress, onError);
-	
+	var ext = fileName.split(".");
+	if(ext[ext.length -1] == "obj")
+	{
+		var loader = new THREE.OBJLoader(manager);
+		loader.load(fileLoc, function(obj)
+				{
+					
+					object.add(obj);
+					scene.add(object);
+				}, onProgress, onError);
+	}//end of if
+	else if(ext[ext.length -1] == "stl")
+	{
+		var loader = new THREE.STLLoader(manager);
+		loader.load(fileLoc, function(stl)
+				{
+					object.add(stl);
+					scene.add(object);
+				}, onProgress, onError);
+	}//end of else if
 	//init Lights
 	point = new THREE.DirectionalLight( 0xffeedd );
 	point.position.set( 0, 0, 1 );
