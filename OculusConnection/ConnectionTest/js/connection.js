@@ -149,7 +149,7 @@ function init()
 			{
 				obj.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
-						child.material.map = texture;
+						//child.material.map = texture;
 					}
 				} );
 				object.add(obj);
