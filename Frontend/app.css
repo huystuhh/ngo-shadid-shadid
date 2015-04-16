@@ -59,15 +59,19 @@
 }
 
 .oculus {
+	position: absolute;
+	height:295px;
 	width:100%;
-	position: relative;
+	top:0px;
 }
 
 .oculus-logo {
 	content: url('images/oculus-rift-logo.png') no-repeat center center;
 	position: absolute;
-	bottom: 10px;
-	max-width: 100%;
+	bottom: -40px;
+	right: -20px;
+	height: 150px;
+	width: auto;
 }
 
 .btn-container {
