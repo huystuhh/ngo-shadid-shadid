@@ -148,11 +148,7 @@ function init()
 	var loader = new THREE.OBJLoader(manager);
 	loader.load('lib/capsule.obj', function(obj)
 			{
-				obj.traverse( function ( child ) {
-					if ( child instanceof THREE.Mesh ) {
-						child.material.map = material;
-					}
-				} );
+				
 				object.add(obj);
 				scene.add(object);
 			}, onProgress, onError);
