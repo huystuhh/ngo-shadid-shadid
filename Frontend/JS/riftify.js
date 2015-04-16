@@ -132,7 +132,7 @@ function init()
 	var manager = new THREE.LoadingManager();	
 	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load('Database/capsule.obj', function(obj)
+	loader.load('Database/IronMan.obj', function(obj)
 			{
 				
 				object.add(obj);
