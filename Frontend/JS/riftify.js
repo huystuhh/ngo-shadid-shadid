@@ -219,6 +219,7 @@ function keyUp()
 
 window.onload = function() {
 	$('#myModal').modal('toggle');
+	$('#popoverData').popover();
 	init();
 	animate();
 }

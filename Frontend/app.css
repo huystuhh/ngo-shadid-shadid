@@ -122,6 +122,21 @@ body {
 	background-color:rgba(0,0,0,0.4);
 }
 
+.help {
+	position: absolute;
+	top: 0px;
+	width:100%;
+}
+
+.btn-help {
+	position: absolute;
+	right: 0px;
+}
+
+.glyphicon-info-sign {
+	font-size: 30px;
+}
+
 .rendering {
 	text-align: center;
 	font-weight: bold;
