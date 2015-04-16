@@ -34,7 +34,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	this.minDistance = 0;
 	this.maxDistance = Infinity;
 
-	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
+	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40, W: 87 , A: 65, S: 83, D: 68};
 
 	// internals
 
@@ -337,16 +337,16 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case scope.keys.UP:
+			case scope.keys.W:
 				scope.pan( new THREE.Vector3( 0, 1, 0 ) );
 				break;
-			case scope.keys.BOTTOM:
+			case scope.keys.S:
 				scope.pan( new THREE.Vector3( 0, - 1, 0 ) );
 				break;
-			case scope.keys.LEFT:
+			case scope.keys.A:
 				scope.pan( new THREE.Vector3( - 1, 0, 0 ) );
 				break;
-			case scope.keys.RIGHT:
+			case scope.keys.D:
 				scope.pan( new THREE.Vector3( 1, 0, 0 ) );
 				break;
 		}
