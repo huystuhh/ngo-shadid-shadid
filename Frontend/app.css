@@ -84,11 +84,11 @@
 
 
 /* Below is stuff for riftify.html */
-.body {
+body {
 	font-family: 'Strait', sans-serif;
 	background-color: #161616;
 	color: #fff;
-	margin: 0px !important;
+	margin: 0px;
 	overflow: hidden;
 	letter-spacing:1px;
 	font-size:13px;
