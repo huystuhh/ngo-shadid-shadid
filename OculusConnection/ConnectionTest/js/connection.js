@@ -112,7 +112,7 @@ function init()
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	element = document.getElementById('viewport');
 	element.appendChild(renderer.domElement);
-	renderer.setClearColorHex(0x000000, 1);
+	renderer.setClearColorH(0x000000, 1);
 	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
