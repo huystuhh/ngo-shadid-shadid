@@ -77,13 +77,13 @@
 	text-align: center;
 }
 
-.btn {
+.rift-button {
 	width: 50%;
 	font-size: 36px !important;
 }
 
-.btn2 {
-	width: 35%;
+.reload-button {
+	width: 40%;
 	font-size: 24px !important;
 }
 
