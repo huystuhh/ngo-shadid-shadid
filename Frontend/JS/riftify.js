@@ -113,6 +113,8 @@ function init()
 			//$bar.width(percentComplete * 10);
 			//$bar.text(Math.round(percentComplete, 2) + "%");
 			
+			$('.progress-bar').css('width',percentComplete+'%').attr('aria-valuenow', Math.round(percentComplete,2));
+			
 			if(percentComplete == 100)
 				rendered = true;
 		}
