@@ -132,7 +132,7 @@ function init()
 	var manager = new THREE.LoadingManager();	
 	
 	var fileLoc = 'Database/';
-	var fileName = sessionStorage.getItem("obj");
+	var fileName = sessionStorage.getItem("name");
 	console.log(fileName);
 	
 	var loader = new THREE.OBJLoader(manager);
