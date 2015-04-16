@@ -97,6 +97,7 @@ function init()
 	document.addEventListener("keydown", keyDown, false);
 	document.addEventListener("keyup", keyUp, false);
 	window.addEventListener('resize', onResize, false);
+	
 	//init Scene
 	clock = new THREE.Clock();
 	mouse = new THREE.Vector2(0, 0);
@@ -104,15 +105,14 @@ function init()
 	aspectRatio = window.innerWidth / window.innerHeight;
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 2000);
-	camera.position.z = 250;
+	camera.position.z = 50;
 	camera.lookAt(scene.position);
 	// Initialize the renderer
 	renderer = new THREE.WebGLRenderer({alpha: true},{antialias:true});
 	renderer.setClearColor(0xFFFFFF, 1);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	element = document.getElementById('viewport');
-	element.appendChild(renderer.domElement);
-	
+	element.appendChild(renderer.domElement);	
 	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
