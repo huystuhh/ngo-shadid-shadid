@@ -102,9 +102,6 @@ function init()
 	element.appendChild(renderer.domElement);
 	controls = new THREE.OrbitControls(camera);
 	
-	$('#myModal').modal('toggle');
-	var $bar = $('.bar');
-	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
 	{
@@ -116,9 +113,6 @@ function init()
 			$bar.text(Math.round(percentComplete, 2) + "%");
 		}
 	};
-	$('.progress').removeClass('active');
-	document.getElementById('got-it').style.display = "inline-block";
-
 	
 	var onError = function ( xhr ) 
 	{
@@ -211,6 +205,10 @@ function keyUp()
 }//end of keyUp
 
 window.onload = function() {
+	$('#myModal').modal('toggle');
+	var $bar = $('.bar');
 	init();
 	animate();
+	$('.progress').removeClass('active');
+	document.getElementById('got-it').style.display = "inline-block";
 }
