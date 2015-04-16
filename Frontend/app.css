@@ -117,3 +117,16 @@ body {
 	position:absolute;
 	background-color:rgba(0,0,0,0.4);
 }
+
+.modal-backdrop {
+	opacity: 0.5;
+}
+
+.modal-dialog {
+	-webkit-transform: translate(0px, 50%);
+	transform: translate(0px, 50%);
+}
+
+.progress-popup {
+	margin-bottom: 0;
+}
