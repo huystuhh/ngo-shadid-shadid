@@ -16,6 +16,7 @@ var axisZ = new THREE.Vector3( 0, 0, 1 );
 var fileLoc = 'Database/';
 var controls;
 var rendered = false;
+var $bar;
 
 function onResize() {
 	if(!usingRift){
@@ -103,6 +104,8 @@ function init()
 	element.appendChild(renderer.domElement);
 	controls = new THREE.OrbitControls(camera);
 	
+	$bar = $('.bar');
+	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
 	{
@@ -110,24 +113,15 @@ function init()
 		{
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-			
-			var progress = setInterval(function() {
-				var $bar = $('.bar');
-				
-				if($bar.width() >= 400) {
-					clearInterval(progress);
-					$('.progress').removeClass('active');
-				} else {
-					$bar.width($bar.width() + 40);
-				}
-				$bar.width($bar.width() / 4 + "%");
-			}, 800);
+			$bar.width(percentComplete * 10);
+			$bar.text(Math.round(percentComplete, 2) + "%");
 			
 			if(percentComplete == 100)
 				rendered = true;
 		}
 		
 		if(rendered){
+			$('.progress').removeClass('active');
 			document.getElementById('got-it').style.display = "inline-block";
 		}
 	};
