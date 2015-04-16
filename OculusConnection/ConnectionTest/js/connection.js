@@ -145,7 +145,7 @@ function init()
 		  });
 	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load('lib/airboat.obj', function(obj)
+	loader.load('lib/IronMan.obj', function(obj)
 			{
 				obj.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
