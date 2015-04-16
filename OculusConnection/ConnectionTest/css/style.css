@@ -34,3 +34,7 @@ color:#a0a0a0;
 .button:hover{
 color:white;
 }
+#canvasColor {
+	opacity: 1;
+	background: white;
+}

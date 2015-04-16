@@ -14,78 +14,6 @@ var rotationx = rotationy = rotationz = 0
 var axisX = new THREE.Vector3( 1, 0, 0 ); 
 var axisZ = new THREE.Vector3( 0, 0, 1 ); 
 
-function initScene() {
-	clock = new THREE.Clock();
-	mouse = new THREE.Vector2(0, 0);
-	windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
-	aspectRatio = window.innerWidth / window.innerHeight;
-	scene = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 2000);
-	camera.position.z = 25;
-	camera.lookAt(scene.position);
-	// Initialize the renderer
-	renderer = new THREE.WebGLRenderer({antialias:true});
-	renderer.setClearColor(0x161616);
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	element = document.getElementById('viewport');
-	element.appendChild(renderer.domElement);
-}
-
-function initLights(){
-	point = new THREE.DirectionalLight( 0xffeedd );
-	point.position.set( 0, 0, 1 );
-	scene.add(point);
-	
-	var ambient = new THREE.AmbientLight( 0x101030 );
-	scene.add( ambient );
-
-
-}
-function initGeometry(){
-	//methods for OBJLoader
-	var onProgress = function ( xhr ) 
-	{
-		if ( xhr.lengthComputable ) 
-		{
-			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-		}
-	};
-
-	var onError = function ( xhr ) 
-	{
-	};
-	
-	var manager = new THREE.LoadingManager();
-	var texture = new THREE.Texture(manager);
-	var loader = new THREE.ImageLoader( manager );
-	loader.load( 'lib/UV_Grid_Sm.jpg', function ( image ) {
-		texture.image = image;
-		texture.needsUpdate = true;
-	});
-	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
-	
-	var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
-		  console.log( "success" );
-		})
-		  .fail(function() {
-		    console.log( "error" );
-		  });
-	
-	var loader = new THREE.OBJLoader(manager);
-	loader.load('lib/capsule.obj', function(obj)
-			{
-				obj.traverse( function ( child ) {
-					if ( child instanceof THREE.Mesh ) {
-						child.material.map = texture;
-					}
-				} );
-				object.add(obj);
-				scene.add(object);
-			}, onProgress, onError);
-	
-}
-
 function onResize() {
 	if(!usingRift){
 		windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
@@ -169,15 +97,71 @@ function init()
 	document.addEventListener("keydown", keyDown, false);
 	document.addEventListener("keyup", keyUp, false);
 	window.addEventListener('resize', onResize, false);
-	initScene();
-	initGeometry();
-	initLights();
+	//init Scene
+	clock = new THREE.Clock();
+	mouse = new THREE.Vector2(0, 0);
+	windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
+	aspectRatio = window.innerWidth / window.innerHeight;
+	scene = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 2000);
+	camera.position.z = 25;
+	camera.lookAt(scene.position);
+	// Initialize the renderer
+	renderer = new THREE.WebGLRenderer({antialias:true});
+	renderer.setClearColor(0x161616);
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	element = document.getElementById('viewport');
+	element.appendChild(renderer.domElement);
+	
+	//methods for OBJLoader
+	var onProgress = function ( xhr ) 
+	{
+		if ( xhr.lengthComputable ) 
+		{
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+
+	var onError = function ( xhr ) 
+	{
+	};
+	
+	var manager = new THREE.LoadingManager();
+	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
+	
+	var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
+		  console.log( "success" );
+		})
+		  .fail(function() {
+		    console.log( "error" );
+		  });
+	
+	var loader = new THREE.OBJLoader(manager);
+	loader.load('lib/capsule.obj', function(obj)
+			{
+				obj.traverse( function ( child ) {
+					if ( child instanceof THREE.Mesh ) {
+						child.material.map = material;
+					}
+				} );
+				object.add(obj);
+				scene.add(object);
+			}, onProgress, onError);
+	
+	//init Lights
+	point = new THREE.DirectionalLight( 0xffeedd );
+	point.position.set( 0, 0, 1 );
+	scene.add(point);
+	
+	var ambient = new THREE.AmbientLight( 0x101030 );
+	scene.add( ambient );
+	
 	//button for rift camera
 	document.getElementById("toggle-render").addEventListener("click", function(){
 		usingRift = !usingRift;
 		onResize();
-	});
-	
+	});	
 	
 	// Create the bridge object and attempt to connect.
 	oculusBridge = new OculusBridge({
@@ -188,7 +172,7 @@ function init()
 		onDisconnect : bridgeDisconnected
 	});
 	
-	oculusBridge.connect();
+	//oculusBridge.connect();
 	
 	riftCamera = new THREE.OculusRiftEffect(renderer);
 }
