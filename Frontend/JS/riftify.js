@@ -116,7 +116,6 @@ function init()
 			document.getElementById("progress-bar").innerHTML = Math.round(percentComplete, 2) + "%";
 			
 			if(percentComplete == 100) {
-				$('.progress-bar').removeClass('active');
 				document.getElementById('got-it').style.display = "inline-block";
 			}
 		}
