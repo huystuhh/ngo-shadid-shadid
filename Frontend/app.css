@@ -82,13 +82,6 @@
 	font-size: 36px !important;
 }
 
-.reload-container {
-	position: absolute;
-	bottom: 150px;
-	text-align: center;
-}
-
-
 /* Below is stuff for riftify.html */
 body {
 	font-family: 'Strait', sans-serif;
