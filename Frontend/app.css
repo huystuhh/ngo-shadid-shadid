@@ -88,7 +88,7 @@
 	font-family: 'Strait', sans-serif;
 	background-color: #161616;
 	color: #fff;
-	margin: 0px;
+	margin: 0px !important;
 	overflow: hidden;
 	letter-spacing:1px;
 	font-size:13px;
