@@ -16,6 +16,7 @@ var axisZ = new THREE.Vector3( 0, 0, 1 );
 var fileLoc = 'Database/';
 var controls;
 var $bar;
+var rendered = false;
 
 function onResize() {
 	if(!usingRift){
@@ -113,6 +114,9 @@ function init()
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 			$bar.width(Math.round(percentComplete, 2) + "%");
 			$bar.text(Math.round(percentComplete, 2) + "%");
+			
+			if(percentComplete == 100)
+				rendered = true;
 		}
 	};
 	
@@ -210,6 +214,8 @@ window.onload = function() {
 	$('#myModal').modal('toggle');
 	init();
 	animate();
-	//$('.progress').removeClass('active');
-	//document.getElementById('got-it').style.display = "inline-block";
+	if(rendered){
+		$('.progress').removeClass('active');
+		document.getElementById('got-it').style.display = "inline-block";
+	}
 }
