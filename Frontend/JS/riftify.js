@@ -113,7 +113,9 @@ function init()
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 			
 			if(percentComplete == 100) {
-				document.getElementById('got-it').style.display = "inline-block";
+				$('.progress-bar').removeClass('active');
+				document.getElementById("rendering").innerHTML = "Rendering Complete";
+				document.getElementById("got-it").style.display = "inline-block";
 			}
 		}
 	};
