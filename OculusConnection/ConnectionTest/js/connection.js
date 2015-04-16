@@ -128,6 +128,13 @@ function init()
 	{
 	};
 	
+	var loader = new THREE.ImageLoader( manager );
+	loader.load( 'image/UV_Grid_Sm.jpg', function ( image ) {
+
+		texture.image = image;
+		texture.needsUpdate = true;
+
+	} );
 	var manager = new THREE.LoadingManager();
 	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
 	
