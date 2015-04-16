@@ -107,8 +107,8 @@ function init()
 	camera.position.z = 25;
 	camera.lookAt(scene.position);
 	// Initialize the renderer
-	renderer = new THREE.WebGLRenderer({antialias:true});
-	renderer.setClearColor(0x161616, 1);
+	renderer = new THREE.WebGLRenderer({alpha: true},{antialias:true});
+	renderer.setClearColor(0xFFFFFF, 1);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	element = document.getElementById('viewport');
 	element.appendChild(renderer.domElement);
