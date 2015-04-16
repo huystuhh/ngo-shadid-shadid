@@ -114,14 +114,14 @@ function init()
 			var progress = setInterval(function() {
 				var $bar = $('.bar');
 				
-				if($bar.width() >= 1000) {
+				if($bar.width() >= 400) {
 					clearInterval(progress);
 					$('.progress').removeClass('active');
 				} else {
-					$bar.width(percentComplete * 10);
+					$bar.width($bar.width() + 40);
 				}
-				$bar.width(Math.round(percentComplete, 2) + "%");
-			}, 500);
+				$bar.width($bar.width() / 4 + "%");
+			}, 800);
 			
 			if(percentComplete == 100)
 				rendered = true;
