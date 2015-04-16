@@ -108,11 +108,11 @@ function init()
 	camera.lookAt(scene.position);
 	// Initialize the renderer
 	renderer = new THREE.WebGLRenderer({antialias:true});
-	renderer.setClearColor(0x161616);
+	renderer.setClearColor(0x161616, 1);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	element = document.getElementById('viewport');
 	element.appendChild(renderer.domElement);
-	renderer.setClearColorH(0x000000, 1);
+	
 	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
