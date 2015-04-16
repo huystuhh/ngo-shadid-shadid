@@ -114,7 +114,7 @@ function init()
 			
 			if(percentComplete == 100) {
 				$('.progress-bar').removeClass('active');
-				document.getElementById("rendering").innerHTML = "Rendering Complete";
+				document.getElementById("rendering").innerHTML = "Rendering Complete!";
 				document.getElementById("got-it").style.display = "inline-block";
 			}
 		}
