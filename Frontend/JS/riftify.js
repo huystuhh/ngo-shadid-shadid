@@ -155,7 +155,7 @@ function init()
 	hemiLight.color.setHSL(0.6, 1, 0.6);
 	hemiLight.groundColor.setHSL(0.095, 1, 0.75);
 	hemiLight.position.set(0, 500, 0);
-	//scene.add(hemiLight);
+	scene.add(hemiLight);
 	
 	point = new THREE.DirectionalLight( 0xffeedd, 0.6 );
 	point.color.setHSL(0.1, 1, 0.95)
