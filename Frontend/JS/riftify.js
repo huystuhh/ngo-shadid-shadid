@@ -12,7 +12,8 @@ var goUp = false
 var goDown = false
 var rotationx = rotationy = rotationz = 0    
 var axisX = new THREE.Vector3( 1, 0, 0 ); 
-var axisZ = new THREE.Vector3( 0, 0, 1 ); 
+var axisZ = new THREE.Vector3( 0, 0, 1 );
+var fileLoc = 'Database/';
 
 function onResize() {
 	if(!usingRift){
@@ -131,10 +132,8 @@ function init()
 	var loader = new THREE.ImageLoader( manager );
 	var manager = new THREE.LoadingManager();	
 	
-	var fileLoc = 'Database/';
 	var fileName = sessionStorage.getItem("name");
 	fileLoc += fileName;
-	console.log(fileLoc);
 	
 	var loader = new THREE.OBJLoader(manager);
 	loader.load(fileLoc, function(obj)
