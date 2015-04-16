@@ -8,6 +8,7 @@ $(document).ready(function(){
 			init: function() {
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
+					document.getElementById('reload').style.display = "inline-block";
 					sessionStorage.setItem("name", file.name);
 				});
 			}
@@ -15,4 +16,8 @@ $(document).ready(function(){
 
 function riftify() {
 	window.open("riftify.html");
+}
+
+function reload() {
+	window.location.reload(true);
 }
