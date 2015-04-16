@@ -72,7 +72,7 @@
 
 .btn-container {
 	position: absolute;
-	bottom: 200px;
+	bottom: 150px;
 	width: 100%;
 	text-align: center;
 }
@@ -80,6 +80,11 @@
 .btn {
 	width: 50%;
 	font-size: 36px !important;
+}
+
+.btn2 {
+	width: 35%;
+	font-size: 24px !important;
 }
 
 /* Below is stuff for riftify.html */
