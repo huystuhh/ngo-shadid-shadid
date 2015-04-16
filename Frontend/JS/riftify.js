@@ -122,7 +122,7 @@ function init()
 	var fileName = sessionStorage.getItem("name");
 	fileLoc += fileName;
 	var ext = fileName.split(".");
-	if(ext[ext.length -1] == "obj")
+	if(ext[ext.length -1].toLowerCase() == "obj")
 	{
 		var loader = new THREE.OBJLoader(manager);
 		loader.load(fileLoc, function(obj)
@@ -132,7 +132,7 @@ function init()
 					scene.add(object);
 				}, onProgress, onError);
 	}//end of if
-	else if(ext[ext.length -1] == "stl")
+	else if(ext[ext.length -1].toLowerCase() == "stl")
 	{
 		var loader = new THREE.STLLoader(manager);
 		loader.load(fileLoc, function(stl)
@@ -141,6 +141,7 @@ function init()
 					scene.add(object);
 				}, onProgress, onError);
 	}//end of else if
+	
 	//init Lights
 	point = new THREE.DirectionalLight( 0xffeedd );
 	point.position.set( 0, 0, 1 );
