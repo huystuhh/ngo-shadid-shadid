@@ -138,7 +138,7 @@ function init()
 		  });
 	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load('lib/IronMan.obj', function(obj)
+	loader.load('lib/self_assembly.obj', function(obj)
 			{
 				
 				object.add(obj);
