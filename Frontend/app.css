@@ -108,8 +108,7 @@
 }
 
 #info{
-	top:0px;
-	left:0px;
+	padding:10px;
 	color:#fff;
 	position:absolute;
 	background-color:rgba(0,0,0,0.4);
