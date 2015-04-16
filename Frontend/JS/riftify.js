@@ -15,6 +15,7 @@ var axisX = new THREE.Vector3( 1, 0, 0 );
 var axisZ = new THREE.Vector3( 0, 0, 1 );
 var fileLoc = 'Database/';
 var controls;
+var $bar = $('.bar');
 
 function onResize() {
 	if(!usingRift){
@@ -206,7 +207,6 @@ function keyUp()
 
 window.onload = function() {
 	$('#myModal').modal('toggle');
-	var $bar = $('.bar');
 	init();
 	animate();
 	$('.progress').removeClass('active');
