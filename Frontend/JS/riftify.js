@@ -14,6 +14,7 @@ var rotationx = rotationy = rotationz = 0
 var axisX = new THREE.Vector3( 1, 0, 0 ); 
 var axisZ = new THREE.Vector3( 0, 0, 1 );
 var fileLoc = 'Database/';
+var controls;
 
 function onResize() {
 	if(!usingRift){
@@ -55,26 +56,12 @@ function render() {
 	try{
 		if(usingRift)
 		{
-			if(goLeft)
-				object.rotateOnAxis(axisZ, 0.08);
-			if(goRight)
-				object.rotateOnAxis(axisZ, -0.08);
-			if(goUp)
-				object.rotateOnAxis(axisX, 0.08);
-			if(goDown)
-				object.rotateOnAxis(axisX, -0.08);
+			controls.update();
 			riftCamera.render(scene, camera);
 		}
 		else
 		{
-			if(goLeft)
-				object.rotateOnAxis(axisZ, 0.08);
-			if(goRight)
-				object.rotateOnAxis(axisZ, -0.08);
-			if(goUp)
-				object.rotateOnAxis(axisX, 0.08);
-			if(goDown)
-				object.rotateOnAxis(axisX, -0.08);
+			controls.update();
 			renderer.render(scene, camera);
 		}
 	}catch(e){
@@ -113,7 +100,7 @@ function init()
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	element = document.getElementById('viewport');
 	element.appendChild(renderer.domElement);
-	
+	controls = new THREE.OrbitControls(camera);
 	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
