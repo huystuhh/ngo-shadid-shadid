@@ -108,12 +108,9 @@ function init()
 		if ( xhr.lengthComputable ) 
 		{
 			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-			//$bar.width(percentComplete * 10);
-			//$bar.text(Math.round(percentComplete, 2) + "%");
-			
 			$('.progress-bar').css('width',percentComplete+'%').attr('aria-valuenow', percentComplete);
 			document.getElementById("progress-bar").innerHTML = Math.round(percentComplete, 2) + "%";
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 			
 			if(percentComplete == 100) {
 				document.getElementById('got-it').style.display = "inline-block";
