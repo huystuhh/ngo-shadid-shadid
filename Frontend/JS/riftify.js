@@ -151,16 +151,16 @@ function init()
 	}//end of else if
 	
 	//init Lights
-	hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6);
+	hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1);
 	hemiLight.color.setHSL(0.6, 1, 0.6);
 	hemiLight.groundColor.setHSL(0.095, 1, 0.75);
 	hemiLight.position.set(0, 500, 0);
 	scene.add(hemiLight);
 	
-	//point = new THREE.DirectionalLight( 0xffeedd, 1 );
-	//point.color.setHSL(0.1, 1, 0.95)
-	//point.position.set( 0, 0, 1 );
-	//scene.add(point);
+	point = new THREE.DirectionalLight( 0xffeedd, 1 );
+	point.color.setHSL(0.1, 1, 0.95)
+	point.position.set( 0, 10, 0 );
+	scene.add(point);
 	
 	var ambient = new THREE.AmbientLight( 0x101030 );
 	scene.add( ambient );
