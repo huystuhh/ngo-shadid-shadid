@@ -210,6 +210,6 @@ window.onload = function() {
 	$('#myModal').modal('toggle');
 	init();
 	animate();
-	$('.progress').removeClass('active');
-	document.getElementById('got-it').style.display = "inline-block";
+	//$('.progress').removeClass('active');
+	//document.getElementById('got-it').style.display = "inline-block";
 }
