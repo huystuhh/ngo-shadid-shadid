@@ -2,14 +2,15 @@ var renderer, camera, scene, element;
 var point;
 var aspectRatio, windowHalf;
 var object;
-var riftCamera;
+var accelerationIndicator;
+var oculusBridge;
 var usingRift = false;
-var goLeft = false;
-var goRight = false;
-var goUp = false;
-var goDown = false;
-var rotationx = rotationy = rotationz = 0;   
-var _q1 = new THREE.Quaternion(); 
+var riftCamera;
+var goLeft = false
+var goRight = false
+var goUp = false
+var goDown = false
+var rotationx = rotationy = rotationz = 0    
 var axisX = new THREE.Vector3( 1, 0, 0 ); 
 var axisZ = new THREE.Vector3( 0, 0, 1 ); 
 
@@ -29,31 +30,45 @@ $(document).ready(function(){
 }});
 
 function riftify() {
-	window.open("../../OculusConnection/ConnectionTest/connection.html");
+	window.open("riftify.html");
 }
 
-function onResize() 
-{
-	if(!usingRift)
-	{
+function onResize() {
+	if(!usingRift){
 		windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
 		aspectRatio = window.innerWidth / window.innerHeight;
 		camera.aspect = aspectRatio;
 		camera.updateProjectionMatrix();
 		renderer.setSize(window.innerWidth, window.innerHeight);
-	}//end of if
-	else 
-	{
+	}else {
 		riftCamera.setSize(window.innerWidth, window.innerHeight);
-	}//end of else
-}//end of onResize
-
-function animate()
+	}
+	
+}
+function bridgeConfigUpdated(config){
+	console.log("Oculus config updated.");
+	riftCamera.setHMD(config);
+}
+function bridgeAccelerationUpdated(accel) {
+	// scale values so 1g = 20 world units
+	accelerationIndicator.children[0].position.x = (accel.x * 1.02040816326531) * 2;
+	accelerationIndicator.children[1].position.x = (accel.y * 1.02040816326531) * 2;
+	accelerationIndicator.children[2].position.x = (accel.z * 1.02040816326531) * 2;
+}
+function bridgeOrientationUpdated(quat) {
+	referenceCube.quaternion.set(quat.x, quat.y, quat.z, quat.w);
+}
+function bridgeConnected(){
+	document.getElementById("logo").className = "";
+}
+function bridgeDisconnected(){
+	document.getElementById("logo").className = "offline";
+}
+function animate() 
 {
 	requestAnimationFrame(animate);
 	render();
-}//end of animate
-
+}
 function render() {
 	try{
 		if(usingRift)
@@ -93,6 +108,31 @@ function render() {
 }
 function init()
 {
+	//initialize the object.
+	object = new THREE.Object3D();
+	var axes = new THREE.AxisHelper();
+	object.add(axes);
+	
+	document.addEventListener("keydown", keyDown, false);
+	document.addEventListener("keyup", keyUp, false);
+	window.addEventListener('resize', onResize, false);
+	//init Scene
+	clock = new THREE.Clock();
+	mouse = new THREE.Vector2(0, 0);
+	windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
+	aspectRatio = window.innerWidth / window.innerHeight;
+	scene = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 2000);
+	camera.position.z = 25;
+	camera.lookAt(scene.position);
+	// Initialize the renderer
+	renderer = new THREE.WebGLRenderer({alpha: true},{antialias:true});
+	renderer.setClearColor(0xFFFFFF, 1);
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	element = document.getElementById('viewport');
+	element.appendChild(renderer.domElement);
+	
+	
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
 	{
@@ -106,59 +146,65 @@ function init()
 	var onError = function ( xhr ) 
 	{
 	};
+	
+	var loader = new THREE.ImageLoader( manager );
+	loader.load( 'Frontend/images/UV_Grid_Sm.jpg', function ( image ) {
 
-	//initialize the object.
-	object = new THREE.Object3D();
-	var axes = new THREE.AxisHelper();
-	object.add(axes);
-	
-	document.addEventListener("keydown", keyDown, false);
-	document.addEventListener("keyup", keyUp, false);
-	window.addEventListener('resize', onResize, false);
-	
-	//button for rift camera
-	//document.getElementById("toggle-render").addEventListener("click", function(){
-	//	usingRift = !usingRift;
-	//	onResize();
-	//});
-		
-	//initialze the scene
-	windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
-	aspectRatio = window.innerWidth / window.innerHeight;
-	scene = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 10000);
-	camera.position.set(120, 160, 120);
-	camera.lookAt(scene.position);
-	
-	// Initialize the renderer
-	renderer = new THREE.WebGLRenderer({antialias:true});
-	renderer.setClearColor(0x161616);
-	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	element = document.getElementById('viewport');
-	element.appendChild(renderer.domElement);
-	
-	//Let there be Light.
-	point = new THREE.DirectionalLight( 0xffffff, 1, 0, Math.PI, 1 );
-	point.position.set( -250, 250, 150 );
-	scene.add(point);
-	
-	//create object
-	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
+		texture.image = image;
+		texture.needsUpdate = true;
+
+	} );
 	var manager = new THREE.LoadingManager();
+	var material = new THREE.MeshLambertMaterial({ color: 0x29d6e1, emissive:0x297d67});
+	
+	/**
+	 var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
+		  console.log( "success" );
+		})
+		  .fail(function() {
+		    console.log( "error" );
+		  });
+	 */
+	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load(localStorage.getItem("obj"), function(obj)
+	loader.load('Database/capsule.obj', function(obj)
 			{
-				object.add(obj)
+				obj.traverse( function ( child ) {
+					if ( child instanceof THREE.Mesh ) {
+						child.material.map = material;
+					}
+				} );
+				object.add(obj);
 				scene.add(object);
-				
 			}, onProgress, onError);
 	
+	//init Lights
+	point = new THREE.DirectionalLight( 0xffeedd );
+	point.position.set( 0, 0, 1 );
+	scene.add(point);
+	
+	var ambient = new THREE.AmbientLight( 0x101030 );
+	scene.add( ambient );
+	
+	//button for rift camera
+	document.getElementById("toggle-render").addEventListener("click", function(){
+		usingRift = !usingRift;
+		onResize();
+	});	
+	
+	// Create the bridge object and attempt to connect.
+	oculusBridge = new OculusBridge({
+		onOrientationUpdate : bridgeOrientationUpdated,
+		onAccelerationUpdate : bridgeAccelerationUpdated,
+		onConfigUpdate : bridgeConfigUpdated,
+		onConnect : bridgeConnected,
+		onDisconnect : bridgeDisconnected
+	});
+	
+	//oculusBridge.connect();
 	
 	riftCamera = new THREE.OculusRiftEffect(renderer);
-	usingRift = !usingRift;
-	onResize();
-}//end of init
+}
 
 function keyDown(event)
 {
@@ -182,7 +228,7 @@ function keyDown(event)
 		goDown = true;
 		goUp = false;
 	}//end if
-}//end of keyDown
+}
 
 function keyUp()
 {
@@ -191,3 +237,8 @@ function keyUp()
 	goUp = false;
 	goDown = false;
 }//end of keyUp
+
+window.onload = function() {
+	init();
+	animate();
+}
