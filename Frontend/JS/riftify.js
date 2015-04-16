@@ -151,7 +151,14 @@ function init()
 	}//end of else if
 	
 	//init Lights
-	point = new THREE.DirectionalLight( 0xffeedd );
+	hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6);
+	hemiLight.color.setHSL(0.6, 1, 0.6);
+	hemiLight.groundColor.setHSL(0.095, 1, 0.75);
+	hemiLight.position.set(0, 500, 0);
+	scene.add(hemiLight);
+	
+	point = new THREE.DirectionalLight( 0xffffff, 1 );
+	point.color.setHSL(0.1, 1, 0.95);
 	point.position.set( 0, 0, 1 );
 	scene.add(point);
 	
