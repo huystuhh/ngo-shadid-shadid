@@ -94,24 +94,6 @@
 	font-size:13px;
 }
 
-#logo {
-	width:50px;
-	height:50px;
-	padding:10px;
-	position:absolute;
-	top:0px;
-	right:0px;
-	cursor:pointer;
-	background-color:rgba(0,0,0,0.4);
-	background-image:url(../img/oculus_bridge.png);
-	background-repeat:no-repeat;
-	background-position:10px 10px;
-}
-
-#logo.offline{
-	background-image:url(../img/oculus_bridge_offline.png);
-}
-
 .button {
 	font: 'Strait', sans-serif;
 	cursor:pointer;
