@@ -133,10 +133,11 @@ function init()
 	
 	var fileLoc = 'Database/';
 	var fileName = sessionStorage.getItem("name");
-	console.log(fileName);
+	fileLoc += fileName;
+	console.log(fileLoc);
 	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load('Database/IronMan.obj', function(obj)
+	loader.load(fileLoc, function(obj)
 			{
 				
 				object.add(obj);
