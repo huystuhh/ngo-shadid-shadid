@@ -15,7 +15,7 @@ var axisX = new THREE.Vector3( 1, 0, 0 );
 var axisZ = new THREE.Vector3( 0, 0, 1 );
 var fileLoc = 'Database/';
 var controls;
-var $bar = $('.bar');
+var $bar;
 
 function onResize() {
 	if(!usingRift){
@@ -103,6 +103,7 @@ function init()
 	element.appendChild(renderer.domElement);
 	controls = new THREE.OrbitControls(camera);
 	
+	$bar = $('.bar');
 	//methods for OBJLoader
 	var onProgress = function ( xhr ) 
 	{
