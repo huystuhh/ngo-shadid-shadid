@@ -129,7 +129,7 @@ function init()
 	};
 	
 	var loader = new THREE.ImageLoader( manager );
-	var texture;
+	var texture = new THREE.Texture();
 	loader.load( 'lib/UV_Grid_Sm.jpg', function ( image ) {
 
 		texture.image = image;
