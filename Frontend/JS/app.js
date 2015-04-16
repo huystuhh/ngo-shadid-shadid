@@ -7,8 +7,7 @@ $(document).ready(function(){
 			init: function() {
 				this.on("success", function(file) {
 					document.getElementById('riftify').style.display = "inline-block";
-					localStorage.setItem("obj", file);
-					console.log(file);
+					sessionStorage.setItem("name", file.name);
 				});
 			}
 }});

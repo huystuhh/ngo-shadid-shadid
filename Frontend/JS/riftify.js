@@ -131,6 +131,10 @@ function init()
 	var loader = new THREE.ImageLoader( manager );
 	var manager = new THREE.LoadingManager();	
 	
+	var fileLoc = 'Database/';
+	var fileName = sessionStorage.getItem("obj");
+	console.log(fileName);
+	
 	var loader = new THREE.OBJLoader(manager);
 	loader.load('Database/IronMan.obj', function(obj)
 			{
