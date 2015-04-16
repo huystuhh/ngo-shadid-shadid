@@ -118,6 +118,11 @@ function init()
 			if(percentComplete == 100)
 				rendered = true;
 		}
+		
+		if(rendered){
+			$('.progress').removeClass('active');
+			document.getElementById('got-it').style.display = "inline-block";
+		}
 	};
 	
 	var onError = function ( xhr ) 
@@ -214,8 +219,4 @@ window.onload = function() {
 	$('#myModal').modal('toggle');
 	init();
 	animate();
-	if(rendered){
-		$('.progress').removeClass('active');
-		document.getElementById('got-it').style.display = "inline-block";
-	}
 }
