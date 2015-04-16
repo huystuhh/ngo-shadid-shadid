@@ -157,10 +157,10 @@ function init()
 	hemiLight.position.set(0, 500, 0);
 	scene.add(hemiLight);
 	
-	point = new THREE.DirectionalLight( 0xffeedd, 1 );
-	point.color.setHSL(0.1, 1, 0.95)
-	point.position.set( 0, 0, 1 );
-	scene.add(point);
+	//point = new THREE.DirectionalLight( 0xffeedd, 1 );
+	//point.color.setHSL(0.1, 1, 0.95)
+	//point.position.set( 0, 0, 1 );
+	//scene.add(point);
 	
 	var ambient = new THREE.AmbientLight( 0x101030 );
 	scene.add( ambient );
