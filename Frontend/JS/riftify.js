@@ -130,15 +130,9 @@ function init()
 	
 	var loader = new THREE.ImageLoader( manager );
 	var manager = new THREE.LoadingManager();	
-	var jqxhr = jQuery.get( 'lib/airboat.obj', function() {
-		  console.log( "success" );
-		})
-		  .fail(function() {
-		    console.log( "error" );
-		  });
 	
 	var loader = new THREE.OBJLoader(manager);
-	loader.load('lib/self_assembly.obj', function(obj)
+	loader.load('Database/capsule.obj', function(obj)
 			{
 				
 				object.add(obj);
