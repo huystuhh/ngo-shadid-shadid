@@ -180,7 +180,7 @@ function init()
 		onDisconnect : bridgeDisconnected
 	});
 	
-	//oculusBridge.connect();
+	oculusBridge.connect();
 	
 	riftCamera = new THREE.OculusRiftEffect(renderer);
 }
