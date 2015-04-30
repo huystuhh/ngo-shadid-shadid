@@ -24,6 +24,11 @@ var bodyPosition;
 var viewAngle;
 var velocity;
 
+var keys = [];
+for(var i = 0; i < 130; i++){
+  keys.push(false);
+}
+
 function onResize() {
 	if(!usingRift){
 		windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
@@ -37,11 +42,11 @@ function onResize() {
 	
 }
 function bridgeConnected(){
-  document.getElementById("logo").className = "";
+  //document.getElementById("logo").className = "";
 }
 
 function bridgeDisconnected(){
-  document.getElementById("logo").className = "offline";
+  //document.getElementById("logo").className = "offline";
 }
 
 function bridgeConfigUpdated(config){
