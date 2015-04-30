@@ -341,7 +341,7 @@ function updateInput(delta) {
  
 
   // update the camera position when rendering to the oculus rift.
-  if(useRift) {
+  if(usingRift) {
     camera.position.set(bodyPosition.x, bodyPosition.y, bodyPosition.z);
   }
 }
