@@ -16,6 +16,14 @@ var axisZ = new THREE.Vector3( 0, 0, 1 );
 var fileLoc = 'Database/';
 var controls;
 
+var clock;
+var mouse, time;
+var bodyAngle;
+var bodyAxis;
+var bodyPosition;
+var viewAngle;
+var velocity;
+
 function onResize() {
 	if(!usingRift){
 		windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
@@ -28,27 +36,54 @@ function onResize() {
 	}
 	
 }
-function bridgeConfigUpdated(config){
-	console.log("Oculus config updated.");
-	riftCamera.setHMD(config);
-}
-function bridgeAccelerationUpdated(accel) {
-	// scale values so 1g = 20 world units
-	accelerationIndicator.children[0].position.x = (accel.x * 1.02040816326531) * 2;
-	accelerationIndicator.children[1].position.x = (accel.y * 1.02040816326531) * 2;
-	accelerationIndicator.children[2].position.x = (accel.z * 1.02040816326531) * 2;
-}
-function bridgeOrientationUpdated(quat) {
-	referenceCube.quaternion.set(quat.x, quat.y, quat.z, quat.w);
-}
 function bridgeConnected(){
-	document.getElementById("logo").className = "";
+  document.getElementById("logo").className = "";
 }
+
 function bridgeDisconnected(){
-	document.getElementById("logo").className = "offline";
+  document.getElementById("logo").className = "offline";
+}
+
+function bridgeConfigUpdated(config){
+  console.log("Oculus config updated.");
+  riftCam.setHMD(config);      
+}
+
+function bridgeOrientationUpdated(quatValues) {
+
+  // Do first-person style controls (like the Tuscany demo) using the rift and keyboard.
+
+  // TODO: Don't instantiate new objects in here, these should be re-used to avoid garbage collection.
+
+  // make a quaternion for the the body angle rotated about the Y axis.
+  var quat = new THREE.Quaternion();
+  quat.setFromAxisAngle(bodyAxis, bodyAngle);
+
+  // make a quaternion for the current orientation of the Rift
+  var quatCam = new THREE.Quaternion(quatValues.x, quatValues.y, quatValues.z, quatValues.w);
+
+  // multiply the body rotation by the Rift rotation.
+  quat.multiply(quatCam);
+
+
+  // Make a vector pointing along the Z axis and rotate it accoring to the combined look/body angle.
+  var xzVector = new THREE.Vector3(0, 0, 1);
+  xzVector.applyQuaternion(quat);
+
+  // Compute the X/Z angle based on the combined look/body angle.  This will be used for FPS style movement controls
+  // so you can steer with a combination of the keyboard and by moving your head.
+  viewAngle = Math.atan2(xzVector.z, xzVector.x) + Math.PI;
+
+  // Apply the combined look/body angle to the camera.
+  camera.quaternion.copy(quat);
 }
 function animate() 
 {
+	var delta = clock.getDelta();
+	time += delta;
+  
+	updateInput(delta);
+	
 	requestAnimationFrame(animate);
 	render();
 }
@@ -56,7 +91,6 @@ function render() {
 	try{
 		if(usingRift)
 		{
-			controls.update();
 			riftCamera.render(scene, camera);
 		}
 		else
@@ -82,9 +116,21 @@ function init()
 	var axes = new THREE.AxisHelper();
 	object.add(axes);
 	
-	document.addEventListener("keydown", keyDown, false);
-	document.addEventListener("keyup", keyUp, false);
 	window.addEventListener('resize', onResize, false);
+]
+	document.addEventListener('keydown', onKeyDown, false);
+	document.addEventListener('keyup', onKeyUp, false);
+	document.addEventListener('mousedown', onMouseDown, false);
+	document.addEventListener('mousemove', onMouseMove, false);
+	document.addEventListener( 'mousewheel', onMouseWheel, false );
+	document.addEventListener( 'DOMMouseScroll', onMouseWheel, false );
+	
+	time          = Date.now();
+	bodyAngle     = 0;
+	bodyAxis      = new THREE.Vector3(0, 1, 0);
+	bodyPosition  = new THREE.Vector3(0, 15, 0);
+	velocity      = new THREE.Vector3();
+	
 	//init Scene
 	clock = new THREE.Clock();
 	mouse = new THREE.Vector2(0, 0);
@@ -92,6 +138,7 @@ function init()
 	aspectRatio = window.innerWidth / window.innerHeight;
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, aspectRatio, 1, 2000);
+	camera.useQuaternion = true;
 	camera.position.z = 250;
 	camera.lookAt(scene.position);
 	// Initialize the renderer
@@ -173,11 +220,11 @@ function init()
 	
 	// Create the bridge object and attempt to connect.
 	oculusBridge = new OculusBridge({
-		onOrientationUpdate : bridgeOrientationUpdated,
-		onAccelerationUpdate : bridgeAccelerationUpdated,
-		onConfigUpdate : bridgeConfigUpdated,
-		onConnect : bridgeConnected,
-		onDisconnect : bridgeDisconnected
+		"debug"
+		"onOrientationUpdate" : bridgeOrientationUpdated,
+		"onConfigUpdate" : bridgeConfigUpdated,
+		"onConnect" : bridgeConnected,
+		"onDisconnect" : bridgeDisconnected
 	});
 	
 	oculusBridge.connect();
@@ -185,37 +232,114 @@ function init()
 	riftCamera = new THREE.OculusRiftEffect(renderer);
 }
 
-function keyDown(event)
-{
-	if(event.keyCode == 37)
-	{
-		goLeft = true;
-		goRight = false;
-	}//end of if
-	if(event.keyCode == 39)
-	{
-		goRight = true;
-		goLeft = false;
-	}//end of if
-	if(event.keyCode ==38)
-	{
-		goUp = true;
-		goDown = false;
-	}//end if
-	if(event.keyCode == 40)
-	{
-		goDown = true;
-		goUp = false;
-	}//end if
+function onMouseMove(event) {
+  mouse.set( (event.clientX / window.innerWidth - 0.5) * 2, (event.clientY / window.innerHeight - 0.5) * 2);
 }
 
-function keyUp()
-{
-	goLeft = false;
-	goRight = false;
-	goUp = false;
-	goDown = false;
-}//end of keyUp
+
+function onMouseDown(event) {
+  // Stub
+  //floorTexture.needsUpdate = true;
+  console.log("update.");
+}
+
+
+function onKeyDown(event) {
+
+  if(event.keyCode == 48){ // zero key.
+    useRift = !useRift;
+    onResize();
+  }
+
+  // prevent repeat keystrokes.
+  if(!keys[32] && (event.keyCode == 32)){ // Spacebar to jump
+    velocity.y += 1.9;
+  }
+
+  keys[event.keyCode] = true;
+}
+
+
+function onKeyUp(event) {
+  keys[event.keyCode] = false;
+}
+
+function onMouseWheel( event ) {
+
+	var delta = 0;
+	
+	if ( event.wheelDelta ) { // WebKit / Opera / Explorer 9
+
+		delta = event.wheelDelta;
+
+	} else if ( event.detail ) { // Firefox
+
+		delta = - event.detail;
+
+	}
+
+	if ( delta > 0 ) {
+
+		bodyPosition.y += delta;
+
+	} else {
+
+		bodyPosition.y += delta;
+
+	}
+
+}
+
+function updateInput(delta) {
+  
+  var step        = 25 * delta;
+  var turn_speed  = (55 * delta) * Math.PI / 180;
+
+
+  // Forward/backward
+
+  if(keys[87] || keys[38]){ // W or UP
+      bodyPosition.x += Math.cos(viewAngle) * step;
+      bodyPosition.z += Math.sin(viewAngle) * step;
+  }
+
+  if(keys[83] || keys[40]){ // S or DOWN
+      bodyPosition.x -= Math.cos(viewAngle) * step;
+      bodyPosition.z -= Math.sin(viewAngle) * step;
+  }
+
+  // Turn
+
+  if(keys[81]){ // E
+      bodyAngle += turn_speed;
+  }   
+  
+  if(keys[69]){ // Q
+       bodyAngle -= turn_speed;
+  }
+
+  // Straif
+
+  if(keys[65] || keys[37]){ // A or LEFT
+      bodyPosition.x -= Math.cos(viewAngle + Math.PI/2) * step;
+      bodyPosition.z -= Math.sin(viewAngle + Math.PI/2) * step;
+  }   
+  
+  if(keys[68] || keys[39]){ // D or RIGHT
+      bodyPosition.x += Math.cos(viewAngle+Math.PI/2) * step;
+      bodyPosition.z += Math.sin(viewAngle+Math.PI/2) * step;
+  }
+  
+
+  // VERY simple gravity/ground plane physics for jumping.
+  
+ 
+
+  // update the camera position when rendering to the oculus rift.
+  if(useRift) {
+    camera.position.set(bodyPosition.x, bodyPosition.y, bodyPosition.z);
+  }
+}
 
 window.onload = function() {
 	$('#myModal').modal('toggle');
@@ -223,3 +347,4 @@ window.onload = function() {
 	init();
 	animate();
 }
+
