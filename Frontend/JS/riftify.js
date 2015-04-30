@@ -96,6 +96,10 @@ function render() {
 	try{
 		if(usingRift)
 		{
+			if(oculusBridge.isConnected())
+			{
+				controls.update();
+			}
 			riftCamera.render(scene, camera);
 		}
 		else
@@ -341,7 +345,7 @@ function updateInput(delta) {
  
 
   // update the camera position when rendering to the oculus rift.
-  if(usingRift) {
+  if(usingRift && oculusBridge.isConnected()) {
     camera.position.set(bodyPosition.x, bodyPosition.y, bodyPosition.z);
   }
 }
