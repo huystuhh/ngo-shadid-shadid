@@ -220,7 +220,7 @@ function init()
 	
 	// Create the bridge object and attempt to connect.
 	oculusBridge = new OculusBridge({
-		"debug": true;
+		"debug": true,
 		"onOrientationUpdate" : bridgeOrientationUpdated,
 		"onConfigUpdate" : bridgeConfigUpdated,
 		"onConnect" : bridgeConnected,
