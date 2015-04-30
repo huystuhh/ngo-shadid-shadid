@@ -21,3 +21,7 @@ function riftify() {
 function reload() {
 	window.location.reload(true);
 }
+
+$(window).on('load resize', function(){
+    $('#viewport').height($(this).height() - 350);
+});
