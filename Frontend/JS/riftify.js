@@ -117,7 +117,7 @@ function init()
 	object.add(axes);
 	
 	window.addEventListener('resize', onResize, false);
-]
+
 	document.addEventListener('keydown', onKeyDown, false);
 	document.addEventListener('keyup', onKeyUp, false);
 	document.addEventListener('mousedown', onMouseDown, false);
